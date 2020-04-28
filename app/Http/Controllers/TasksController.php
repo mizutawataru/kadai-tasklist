@@ -94,6 +94,10 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'content' => 'required|max:191',
+        ]);
+        
         $task = Task::find($id);
         $task->content = $request->content;
         $task->save();
